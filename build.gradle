@@ -1,0 +1,32 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'spring.ff4j'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok:1.18.36'
+	annotationProcessor 'org.projectlombok:lombok:1.18.36'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.ff4j:ff4j-spring-boot-starter:1.8.12' // 1.9 version does not work
+	implementation 'org.ff4j:ff4j-store-aws-dynamodb:1.8.12'
+	implementation 'software.amazon.awssdk:dynamodb:2.20.160'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
